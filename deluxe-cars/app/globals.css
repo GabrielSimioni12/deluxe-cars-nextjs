@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .custom-scrollbar::-webkit-scrollbar { width: 3px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #c20a0a; }
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sound bars */
+.sound-bar.playing {
+  animation: soundWave 0.6s ease-in-out infinite alternate;
+}
+.sound-bar:nth-child(2) { animation-delay: 0.1s; }
+.sound-bar:nth-child(3) { animation-delay: 0.3s; }
+.sound-bar:nth-child(4) { animation-delay: 0.2s; }
+.sound-bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes soundWave {
+  from { height: 10%; }
+  to { height: 100%; }
+}
+
+/* Range input */
+input[type='range'] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #333;
+  height: 4px;
+  border-radius: 2px;
+}
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #c20a0a;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+/* Dealer locator */
+.active-dealer {
+  border-left: 4px solid #c20a0a !important;
+  background: #1a1a1a !important;
+}
