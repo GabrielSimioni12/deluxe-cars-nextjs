@@ -30,15 +30,20 @@ export default function Home() {
     return () => window.removeEventListener("scroll", reveal);
   }, []);
 
-  const toggleSound = () => {
+  const toggleSound = async () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (isPlaying) { audio.pause(); } else { audio.play(); }
-    setIsPlaying(!isPlaying);
-  };
-
-  const scroll = (dir: "left" | "right") => {
-    carouselRef.current?.scrollBy({ left: dir === "right" ? 432 : -432, behavior: "smooth" });
+    try {
+      if (isPlaying) {
+        audio.pause();
+        setIsPlaying(false);
+      } else {
+        await audio.play();
+        setIsPlaying(true);
+      }
+    } catch (e) {
+      console.log("Audio error:", e);
+    }
   };
 
   return (
@@ -61,7 +66,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative min-h-screen flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-background-dark/20 z-10" />
           <Image
             src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&q=80&w=2000"
             alt="Ferrari SF90"
@@ -70,7 +75,7 @@ export default function Home() {
             priority
           />
         </div>
-        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pb-24 reveal">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pb-32 reveal">
           <div className="max-w-3xl space-y-6">
             <div className="flex items-center gap-4">
               <span className="h-[2px] w-12 bg-primary" />
@@ -117,20 +122,41 @@ export default function Home() {
             <h2 className="text-5xl font-bold tracking-tighter text-white italic uppercase">Current Stable</h2>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => scroll("left")} className="size-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all text-white">
+            <button
+              onClick={() => carouselRef.current?.scrollBy({ left: -432, behavior: "smooth" })}
+              className="size-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all text-white"
+            >
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
-            <button onClick={() => scroll("right")} className="size-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all text-white">
+            <button
+              onClick={() => carouselRef.current?.scrollBy({ left: 432, behavior: "smooth" })}
+              className="size-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all text-white"
+            >
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
           </div>
         </div>
+
         <div ref={carouselRef} className="flex overflow-x-auto hide-scrollbar px-6 gap-8 snap-x scroll-smooth">
           {CAROUSEL_CARS.map((car) => (
-            <div key={car.name} className="min-w-[400px] snap-start group cursor-zoom-in reveal" onClick={() => setModal(car)}>
+            <div key={car.name} className="min-w-[400px] snap-start group cursor-pointer reveal">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-accent-dark">
-                <Image src={car.img} alt={car.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
+                <Image
+                  src={car.img}
+                  alt={car.name}
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:brightness-50"
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 gap-4 p-6">
+                  <p className="text-white font-black uppercase text-xl tracking-wider text-center">{car.name}</p>
+                  <p className="text-primary text-sm font-bold">{car.price}</p>
+                  <Link
+                    href="/models"
+                    className="bg-primary hover:bg-red-700 text-white text-[10px] font-black uppercase tracking-[0.2em] px-6 py-3 rounded-sm transition-all"
+                  >
+                    Ver Catálogo
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -146,7 +172,12 @@ export default function Home() {
           <div className="relative reveal group">
             <div className="absolute -inset-4 border border-primary/20 rounded-2xl scale-95 group-hover:scale-100 transition-transform duration-700" />
             <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
-              <Image src="/images/Models/hub/enzo.png" alt="Enzo Ferrari Heritage" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+              <Image
+                src="/images/Models/hub/enzo.png"
+                alt="Enzo Ferrari Heritage"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-surface-dark via-transparent to-transparent" />
             </div>
             <div className="absolute bottom-8 right-8 bg-primary p-6 rounded-sm shadow-2xl">
@@ -154,6 +185,7 @@ export default function Home() {
               <p className="text-[10px] uppercase font-bold tracking-widest leading-none">Anos de Glória</p>
             </div>
           </div>
+
           <div className="space-y-8 reveal">
             <div>
               <h3 className="text-primary text-xs font-bold tracking-[0.4em] uppercase mb-4 flex items-center gap-4">
@@ -247,7 +279,7 @@ export default function Home() {
       </section>
 
       <audio ref={audioRef} loop>
-        <source src="/assets/engine.mp3" type="audio/mpeg" />
+        <source src="/assets/V12.mp3" type="audio/mpeg" />
       </audio>
 
       <Footer />
