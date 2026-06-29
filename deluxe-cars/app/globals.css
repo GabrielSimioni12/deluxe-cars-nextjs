@@ -72,3 +72,21 @@ input[type='range']::-webkit-slider-thumb {
   border-left: 4px solid #c20a0a !important;
   background: #1a1a1a !important;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #c20a0a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e01010;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c20a0a #0a0a0a;
+}
