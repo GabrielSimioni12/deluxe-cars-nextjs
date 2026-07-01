@@ -30,6 +30,13 @@ export default function Home() {
     return () => window.removeEventListener("scroll", reveal);
   }, []);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.load();
+    }
+  }, []);
+
   const toggleSound = async () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -64,7 +71,7 @@ export default function Home() {
       <F1Modal isOpen={f1Modal} onClose={() => setF1Modal(false)} />
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-end overflow-hidden">
+      <section className="relative min-h-screen flex items-end overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-background-dark/20 z-10" />
           <Image
@@ -75,7 +82,7 @@ export default function Home() {
             priority
           />
         </div>
-        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pb-32 reveal">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pb-48 reveal">
           <div className="max-w-3xl space-y-6">
             <div className="flex items-center gap-4">
               <span className="h-[2px] w-12 bg-primary" />
@@ -197,10 +204,14 @@ export default function Home() {
             </div>
             <div className="space-y-6 text-slate-400 font-light text-lg leading-relaxed">
               <p>
-                &ldquo;Eu não vendo carros, eu vendo motores. Os carros eu dou de graça porque algo precisa segurar o motor.&rdquo; —{" "}
+                &ldquo;Eu não vendo carros, eu vendo motores. Os carros eu dou de graça porque algo
+                precisa segurar o motor.&rdquo; —{" "}
                 <span className="text-white font-medium">Enzo Ferrari</span>.
               </p>
-              <p>Desde a lendária 125 S de 1947, cada curva de uma Ferrari é desenhada pelo vento e cada batida do motor é sincronizada com o coração de quem a pilota.</p>
+              <p>
+                Desde a lendária 125 S de 1947, cada curva de uma Ferrari é desenhada pelo vento e
+                cada batida do motor é sincronizada com o coração de quem a pilota.
+              </p>
             </div>
             <button className="group flex items-center gap-6 text-white hover:text-primary transition-colors">
               <span className="text-[10px] font-black uppercase tracking-[0.3em]">Explorar Linha do Tempo</span>
@@ -234,7 +245,8 @@ export default function Home() {
                   75 Anos na <br /><span className="text-primary">Fórmula 1</span>
                 </h2>
                 <p className="text-slate-400 font-light max-w-md">
-                  A equipe mais icônica da história do automobilismo. 243 vitórias, 16 títulos de construtores — clique para explorar.
+                  A equipe mais icônica da história do automobilismo. 243 vitórias, 16 títulos de
+                  construtores — clique para explorar.
                 </p>
               </div>
               <div className="shrink-0 size-20 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary transition-all duration-500">
@@ -255,7 +267,8 @@ export default function Home() {
                 A Sinfonia <br /> de <span className="text-primary">Maranello</span>
               </h2>
               <p className="text-slate-400 font-light text-lg mb-10 leading-relaxed">
-                Cada motor Ferrari é afinado como um instrumento musical. O som não é apenas um subproduto, é uma assinatura emocional que reverbera a 9.000 RPM.
+                Cada motor Ferrari é afinado como um instrumento musical. O som não é apenas um
+                subproduto, é uma assinatura emocional que reverbera a 9.000 RPM.
               </p>
               <div className="flex items-center gap-6 group cursor-pointer" onClick={toggleSound}>
                 <div className="size-20 rounded-full border border-primary flex items-center justify-center bg-primary/10 group-hover:bg-primary transition-all duration-500">
@@ -271,15 +284,19 @@ export default function Home() {
             </div>
             <div className="flex items-end gap-1 h-32 reveal">
               {[25, 50, 75, 100, 75, 50, 25, 50, 80].map((h, i) => (
-                <div key={i} className={`w-2 bg-primary rounded-full sound-bar ${isPlaying ? "playing" : ""}`} style={{ height: `${h}%`, opacity: h / 100 }} />
+                <div
+                  key={i}
+                  className={`w-2 bg-primary rounded-full sound-bar ${isPlaying ? "playing" : ""}`}
+                  style={{ height: `${h}%`, opacity: h / 100 }}
+                />
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <audio ref={audioRef} loop>
-        <source src="/assets/V12.mp3" type="audio/mpeg" />
+      <audio ref={audioRef} loop preload="auto">
+        <source src="/images/assets/V12.mp3" type="audio/mpeg" />
       </audio>
 
       <Footer />

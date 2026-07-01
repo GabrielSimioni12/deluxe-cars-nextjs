@@ -51,7 +51,12 @@ export default function Header() {
               NOVO
             </span>
           </Link>
+          <Link className="text-[10px] font-bold tracking-widest uppercase hover:text-primary transition-colors" href="/about">
+  About
+</Link>
         </nav>
+
+
 
         {/* CTA */}
         <Link
