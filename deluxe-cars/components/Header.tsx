@@ -63,7 +63,7 @@ export default function Header() {
           href="/models"
           className="bg-primary hover:bg-red-700 text-white text-[10px] font-black uppercase tracking-[0.2em] px-6 py-3 rounded-sm transition-all shrink-0"
         >
-          Configure Yours
+          Ver mais Produtos
         </Link>
       </div>
     </header>

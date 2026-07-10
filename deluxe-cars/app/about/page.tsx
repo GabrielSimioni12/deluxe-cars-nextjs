@@ -149,7 +149,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { icon: "code", label: "Projeto", value: "Deluxe Cars", sub: "Ferrari Showcase" },
-                { icon: "school", label: "Curso", value: "FIAP", sub: "Paulista" },
+                { icon: "school", label: "Curso", value: "Ciências da Computação", sub: "FIAP" },
                 { icon: "layers", label: "Stack", value: "Next.js 15", sub: "React + TypeScript" },
               ].map((item) => (
                 <div key={item.label} className="bg-surface-dark border border-white/5 rounded-2xl p-8 hover:border-primary/30 transition-all">
