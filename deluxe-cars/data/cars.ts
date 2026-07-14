@@ -17,12 +17,12 @@ export interface CarouselCar {
 }
 
 export const CAROUSEL_CARS: CarouselCar[] = [
-  { name: "SF90 Stradale", tag: "Hybrid PHEV", price: "R$ 6.900.000", img: "/images/Models/starter/SF90.png" },
-  { name: "Roma", tag: "V8 Grand Tourer", price: "R$ 6.600.000", img: "/images/Models/starter/roma.png" },
-  { name: "488 GTB", tag: "V8 Turbo", price: "R$ 5.800.000", img: "/images/Models/starter/488GTB.png" },
-  { name: "812 Superfast", tag: "V12 Monster", price: "R$ 3.900.000", img: "/images/Models/starter/812SUPERFAST.png" },
-  { name: "Purosangue", tag: "V12 SUV", price: "R$ 3.798.000", img: "/images/Models/starter/purosangue.png" },
-  { name: "SF90 Stradale Spider", tag: "V12 Icona Series", price: "R$ 5.250.000", img: "/images/Models/starter/STRADALE.png" },
+  { name: "SF90 Stradale", tag: "Hybrid PHEV", price: "R$ 6.900.000", img: "/images/models/starter/SF90.png" },
+  { name: "Roma", tag: "V8 Grand Tourer", price: "R$ 6.600.000", img: "/images/models/starter/ROMA.png" },
+  { name: "488 GTB", tag: "V8 Turbo", price: "R$ 5.800.000", img: "/images/models/starter/488GTB.png" },
+  { name: "812 Superfast", tag: "V12 Monster", price: "R$ 3.900.000", img: "/images/models/starter/812SUPERFAST.png" },
+  { name: "Purosangue", tag: "V12 SUV", price: "R$ 3.798.000", img: "/images/models/starter/PUROSANGUE.png" },
+  { name: "SF90 Stradale Spider", tag: "V12 Icona Series", price: "R$ 5.250.000", img: "/images/models/starter/STRADALE.png" },
 ];
 
 export const CATALOG_CARS: Car[] = [
