@@ -180,7 +180,7 @@ export default function Home() {
             <div className="absolute -inset-4 border border-primary/20 rounded-2xl scale-95 group-hover:scale-100 transition-transform duration-700" />
             <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
               <Image
-                src="/images/Models/hub/enzo.png"
+                src="/images/models/hub/Enzo.png"
                 alt="Enzo Ferrari Heritage"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
